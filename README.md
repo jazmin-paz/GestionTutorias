@@ -135,4 +135,4 @@ Proyecto desarrollado por los siguientes estudiantes:
 * Fernández Nicolás
 * Paz Jazmin
 
-* Quinto año de la Escuela Experimental con énfasis en Tics ProA La Falda
+* Escuela Experimental con énfasis en Tics ProA La Falda
