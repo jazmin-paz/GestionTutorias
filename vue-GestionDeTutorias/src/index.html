@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Mis Tutorías</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         BARRA LATERAL
+    ========================== -->
+
+    <div class="barra">
+
+        <div class="logo">
+            🌿
+        </div>
+
+
+        <button class="icono">
+            🏠
+        </button>
+
+
+        <button class="icono">
+            📚
+        </button>
+
+
+        <button class="botonMas">
+            +
+        </button>
+
+
+        <div class="perfil">
+
+            <button class="icono">
+                👤
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         NOTIFICACIONES
+    ========================== -->
+
+    <div class="lateral">
+
+
+        <div class="contador">
+
+            <span id="numeroTutorias">0</span>
+
+            <p>TUTORÍAS</p>
+
+        </div>
+
+
+        <div class="notificaciones">
+
+            <h3>NOTIFICACIONES</h3>
+
+
+            <div class="mensaje">
+
+                <span class="punto"></span>
+
+                <p>
+                    No hay tutorías pendientes
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         CONTENIDO
+    ========================== -->
+
+    <main class="contenido">
+
+
+        <h1>Mis Tutorías</h1>
+
+
+
+        <!-- =========================
+             CURSOS
+        ========================== -->
+
+        <div class="encabezadoCursos">
+
+
+            <div class="listaCursos" id="listaCursos">
+
+
+                <button
+                    class="curso activo"
+                    onclick="mostrarCurso(1)">
+
+                    Curso 1
+
+                </button>
+
+
+                <button
+                    class="curso"
+                    onclick="mostrarCurso(2)">
+
+                    Curso 2
+
+                </button>
+
+
+                <button
+                    class="curso"
+                    onclick="mostrarCurso(3)">
+
+                    Curso 3
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="acciones">
+
+
+                <button
+                    class="agregarCurso"
+                    onclick="agregarCurso()">
+
+                    + Agregar curso
+
+                </button>
+
+
+                <button class="overview">
+
+                    Overview
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             CURSO ACTUAL
+        ========================== -->
+
+        <h2 id="cursoActual">
+            Curso 1
+        </h2>
+
+
+
+        <!-- =========================
+             CALENDARIO
+        ========================== -->
+
+        <div class="calendario">
+
+
+            <!-- DÍAS DE LA SEMANA -->
+
+            <div class="nombreDia">Lunes</div>
+            <div class="nombreDia">Martes</div>
+            <div class="nombreDia">Miércoles</div>
+            <div class="nombreDia">Jueves</div>
+            <div class="nombreDia">Viernes</div>
+
+
+
+            <!-- SEMANA 1 -->
+
+            <div class="dia">
+                <span>3</span>
+            </div>
+
+            <div class="dia">
+                <span>4</span>
+            </div>
+
+            <div class="dia">
+                <span>5</span>
+            </div>
+
+            <div class="dia">
+                <span>6</span>
+            </div>
+
+            <div class="dia">
+                <span>7</span>
+            </div>
+
+
+
+            <!-- SEMANA 2 -->
+
+            <div class="dia">
+                <span>10</span>
+            </div>
+
+            <div class="dia">
+                <span>11</span>
+            </div>
+
+            <div class="dia">
+                <span>12</span>
+            </div>
+
+            <div class="dia">
+                <span>13</span>
+            </div>
+
+            <div class="dia">
+                <span>14</span>
+            </div>
+
+
+
+            <!-- SEMANA 3 -->
+
+            <div class="dia">
+                <span>17</span>
+            </div>
+
+            <div class="dia">
+                <span>18</span>
+            </div>
+
+            <div class="dia">
+                <span>19</span>
+            </div>
+
+            <div class="dia">
+                <span>20</span>
+            </div>
+
+            <div class="dia">
+                <span>21</span>
+            </div>
+
+
+
+            <!-- SEMANA 4 -->
+
+            <div class="dia">
+                <span>24</span>
+            </div>
+
+            <div class="dia">
+                <span>25</span>
+            </div>
+
+            <div class="dia">
+                <span>26</span>
+            </div>
+
+            <div class="dia">
+                <span>27</span>
+            </div>
+
+            <div class="dia">
+                <span>28</span>
+            </div>
+
+
+
+            <!-- SEMANA 5 -->
+
+            <div class="dia">
+                <span>31</span>
+            </div>
+
+            <div class="dia vacio"></div>
+            <div class="dia vacio"></div>
+            <div class="dia vacio"></div>
+            <div class="dia vacio"></div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             MATERIAS
+        ========================== -->
+
+        <div class="materias">
+
+
+            <div class="encabezadoMaterias">
+
+                <h2>Materias</h2>
+
+
+                <button
+                    class="botonMateria"
+                    onclick="mostrarCajaMateria()">
+
+                    + Agregar materia
+
+                </button>
+
+            </div>
+
+
+
+            <!-- CAJA PARA ESCRIBIR -->
+
+            <div
+                id="cajaMateria"
+                class="cajaMateria">
+
+
+                <input
+                    type="text"
+                    id="nombreMateria"
+                    placeholder="Nombre de la materia">
+
+
+                <button onclick="agregarMateria()">
+
+                    Agregar
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- MATERIAS -->
+
+            <div
+                id="listaMaterias"
+                class="listaMaterias">
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
