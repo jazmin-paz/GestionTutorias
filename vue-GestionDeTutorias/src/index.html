@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Restablecer contraseña</title>
+
+    <style>
+
+        body {
+            background-color: #b7d8c5;
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .cuadro {
+            background-color: white;
+            width: 400px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 25px;
+        }
+
+        .explicacion {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #aaa;
+            border-radius: 30px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin-top: 5px;
+            padding: 13px 35px;
+            border: none;
+            border-radius: 30px;
+            background-color: #5c9c78;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #mensaje {
+            color: #5c9c78;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .separador {
+            font-size: 11px;
+            color: #888;
+            margin-top: 30px;
+        }
+
+        .iniciar {
+            display: inline-block;
+            margin-top: 15px;
+            color: #5c9c78;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="cuadro">
+
+        <h1>RESTABLECER CONTRASEÑA</h1>
+
+        <p class="explicacion">
+            Ingresá tu email. Te enviaremos un mensaje
+            para restablecer tu contraseña.
+        </p>
+
+        <label>EMAIL</label>
+
+        <input type="email" id="email">
+
+        <button onclick="restablecer()">
+            RESTABLECER CONTRASEÑA
+        </button>
+
+        <p id="mensaje"></p>
+
+        <div class="separador">
+            ───── también podés optar por ─────
+        </div>
+
+        <a class="iniciar" href="index.html">
+            INICIAR SESIÓN
+        </a>
+
+    </div>
+
+
+    <script>
+
+        function restablecer() {
+
+            let email = document.getElementById("email").value;
+
+            if (email == "") {
+
+                document.getElementById("mensaje").innerHTML =
+                    "Ingresá tu email";
+
+            } else {
+
+                document.getElementById("mensaje").innerHTML =
+                    "Solicitud enviada correctamente";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
