@@ -1,3 +1,11 @@
+<script setup>
+const emit = defineEmits(['volver'])
+
+function imprimir() {
+  window.print()
+}
+</script>
+
 <template>
 
   <aside class="sidebar">
@@ -14,7 +22,7 @@
       href="#"
       class="sidebar-icon biblioteca-icon"
       title="Biblioteca"
-      @click.prevent="$emit('volver')"
+      @click.prevent="emit('volver')"
     >
       📚
     </a>
@@ -69,12 +77,29 @@
               Seleccionar curso
             </option>
 
-            <option>Primer año</option>
-            <option>Segundo año</option>
-            <option>Tercer año</option>
-            <option>Cuarto año</option>
-            <option>Quinto año</option>
-            <option>Sexto año</option>
+            <option>
+              Primer año
+            </option>
+
+            <option>
+              Segundo año
+            </option>
+
+            <option>
+              Tercer año
+            </option>
+
+            <option>
+              Cuarto año
+            </option>
+
+            <option>
+              Quinto año
+            </option>
+
+            <option>
+              Sexto año
+            </option>
 
           </select>
 
@@ -93,16 +118,45 @@
               Seleccionar asignatura
             </option>
 
-            <option>Matemática</option>
-            <option>Lengua</option>
-            <option>Historia</option>
-            <option>Geografía</option>
-            <option>Inglés</option>
-            <option>Biología</option>
-            <option>Física</option>
-            <option>Química</option>
-            <option>Informática</option>
-            <option>Educación Física</option>
+            <option>
+              Matemática
+            </option>
+
+            <option>
+              Lengua
+            </option>
+
+            <option>
+              Historia
+            </option>
+
+            <option>
+              Geografía
+            </option>
+
+            <option>
+              Inglés
+            </option>
+
+            <option>
+              Biología
+            </option>
+
+            <option>
+              Física
+            </option>
+
+            <option>
+              Química
+            </option>
+
+            <option>
+              Informática
+            </option>
+
+            <option>
+              Educación Física
+            </option>
 
           </select>
 
@@ -125,21 +179,65 @@
             Seleccionar estudiante
           </option>
 
-          <option>Mateo González</option>
-          <option>Valentina Rodríguez</option>
-          <option>Santiago Fernández</option>
-          <option>Camila Martínez</option>
-          <option>Tomás López</option>
-          <option>Martina Sánchez</option>
-          <option>Lucas Romero</option>
-          <option>Agustina Torres</option>
-          <option>Benjamín Herrera</option>
-          <option>Julieta Castro</option>
-          <option>Franco Medina</option>
-          <option>Sofía Navarro</option>
-          <option>Juan Cruz Molina</option>
-          <option>Emilia Vargas</option>
-          <option>Nicolás Pereyra</option>
+          <option>
+            Mateo González
+          </option>
+
+          <option>
+            Valentina Rodríguez
+          </option>
+
+          <option>
+            Santiago Fernández
+          </option>
+
+          <option>
+            Camila Martínez
+          </option>
+
+          <option>
+            Tomás López
+          </option>
+
+          <option>
+            Martina Sánchez
+          </option>
+
+          <option>
+            Lucas Romero
+          </option>
+
+          <option>
+            Agustina Torres
+          </option>
+
+          <option>
+            Benjamín Herrera
+          </option>
+
+          <option>
+            Julieta Castro
+          </option>
+
+          <option>
+            Franco Medina
+          </option>
+
+          <option>
+            Sofía Navarro
+          </option>
+
+          <option>
+            Juan Cruz Molina
+          </option>
+
+          <option>
+            Emilia Vargas
+          </option>
+
+          <option>
+            Nicolás Pereyra
+          </option>
 
         </select>
 
@@ -184,32 +282,45 @@
 
       <div class="botones-observacion">
 
-        <button class="boton-observacion boton-editar">
+        <button
+          class="boton-observacion boton-editar"
+        >
           Editar
         </button>
 
-        <button class="boton-observacion boton-reprogramar">
+
+        <button
+          class="boton-observacion boton-reprogramar"
+        >
           Reprogramar
         </button>
 
-        <button class="boton-observacion boton-cancelar">
+
+        <button
+          class="boton-observacion boton-cancelar"
+        >
           Cancelar
         </button>
 
-        <button class="boton-observacion boton-reenviar">
+
+        <button
+          class="boton-observacion boton-reenviar"
+        >
           Reenviar
         </button>
 
+
         <button
           class="boton-observacion boton-imprimir"
-          @click="window.print()"
+          @click="imprimir"
         >
           Imprimir
         </button>
 
+
         <button
           class="boton-observacion boton-volver"
-          @click="$emit('volver')"
+          @click="emit('volver')"
         >
           Volver
         </button>
