@@ -56,7 +56,7 @@
             placeholder="Mínimo 8 caracteres"
           />
           <img
-            :src="mostrarContrasena ? '/icons/ojo-abierto.svg' : '/icons/ojo-cerrado.svg'"
+            :src="mostrarContrasena ? '/icons/esconder.svg' : '/icons/ver.svg'"
             class="icono-ojo"
             alt="Mostrar u ocultar contraseña"
             @click="mostrarContrasena = !mostrarContrasena"
@@ -80,7 +80,7 @@
             placeholder="Verificar la contraseña"
           />
           <img
-            :src="mostrarConfirmarContrasena ? '/icons/ojo-abierto.svg' : '/icons/ojo-cerrado.svg'"
+            :src="mostrarConfirmarContrasena ? '/icons/ver.svg' : '/icons/esconder.svg'"
             class="icono-ojo"
             alt="Mostrar u ocultar contraseña"
             @click="mostrarConfirmarContrasena = !mostrarConfirmarContrasena"
