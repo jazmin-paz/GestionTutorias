@@ -1,0 +1,27 @@
+.explicacion {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+#mensaje {
+    color: #5c9c78;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.separador {
+    font-size: 11px;
+    color: #888;
+    margin-top: 30px;
+}
+
+.iniciar {
+    display: inline-block;
+    margin-top: 15px;
+    color: #5c9c78;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 14px;
+}
