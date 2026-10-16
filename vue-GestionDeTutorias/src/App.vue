@@ -12,6 +12,11 @@ const actual = computed(() => pantallas[pagina.value])
 const usuarios = ref([])
 const usuario = ref(null)
 const mensaje = ref('')
+const eventos = computed(() => ({
+  inicio: { ingresar, navegar, demo: demostrar },
+  registro: { 'registrar-cuenta': registrar },
+  recuperar: { navegar }
+})[pagina.value] || {})
 function navegar(destino) { pagina.value = destino; mensaje.value = '' }
 function registrar(nuevo) {
   if (usuarios.value.some(u => u.email.toLowerCase() === nuevo.email.toLowerCase())) {
@@ -50,7 +55,7 @@ function salir() { usuario.value = null; navegar('inicio') }
   <p class="nota-demo">Prototipo sin servidor. Los datos duran durante esta sesión y se pierden al recargar. Usá datos de prueba.</p>
   <main class="pagina">
     <p v-if="mensaje" class="mensaje" role="status">{{ mensaje }}</p>
-    <KeepAlive><component :is="actual" @registrar-cuenta="registrar" @ingresar="ingresar" @demo="demostrar" @navegar="navegar" /></KeepAlive>
+    <KeepAlive><component :is="actual" v-on="eventos" /></KeepAlive>
   </main>
   <footer>Escuela ProA La Falda · Gestión de Tutorías</footer>
 </template>

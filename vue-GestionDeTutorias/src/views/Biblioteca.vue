@@ -49,6 +49,7 @@ const aviso = ref('')
         <button
           type="button"
           class="opcion"
+          aria-label="Observaciones"
           @click.prevent="paginaActual = 'observaciones'"
         >
 

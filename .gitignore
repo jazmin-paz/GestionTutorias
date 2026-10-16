@@ -1,1 +1,5 @@
-witch inicio
+# Dependencias y resultados generados
+node_modules/
+dist/
+test-results/
+playwright-report/
