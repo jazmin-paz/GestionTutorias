@@ -6,7 +6,8 @@
       <div class="campo">
         <label for="registro-nombre">Nombre y apellido</label>
         <input
-          id="registro-nombre" v-model="nombre"
+          id="registro-nombre"
+          v-model="nombre"
           type="text"
           placeholder="Nombre"
         />
@@ -16,7 +17,8 @@
       <div class="campo">
         <label for="registro-email">Correo electrónico</label>
         <input
-          id="registro-email" v-model="email"
+          id="registro-email"
+          v-model="email"
           type="email"
           placeholder="ejemplo@correo.com"
         />
@@ -24,11 +26,40 @@
       </div>
 
       <div class="campo">
-        <label for="registro-rol">¿Qué tipo de usuario eres?</label>
-        <select id="registro-rol" v-model="rol" aria-label="Tipo de usuario">
-          <option disabled value="">Seleccionar rol</option>
-          <option v-for="opcion in opcionesRol" :key="opcion">{{ opcion }}</option>
-        </select>
+        <label>¿Qué tipo de usuario eres?</label>
+        <div class="selector">
+          <div
+            class="selector-valor"
+            role="button"
+            tabindex="0"
+            aria-label="Seleccionar rol"
+            @keydown.enter="mostrarOpcionesRol = !mostrarOpcionesRol"
+            @keydown.space.prevent="mostrarOpcionesRol = !mostrarOpcionesRol"
+            @click="mostrarOpcionesRol = !mostrarOpcionesRol"
+          >
+            <span :class="{ placeholder: rol === '' }">
+              {{ rol === '' ? 'Seleccionar rol' : rol }}
+            </span>
+            <span class="flecha" :class="{ arriba: mostrarOpcionesRol }"
+              >▾</span
+            >
+          </div>
+
+          <ul v-if="mostrarOpcionesRol" class="selector-lista">
+            <li
+              v-for="opcion in opcionesRol"
+              :key="opcion"
+              class="selector-opcion"
+              role="button"
+              tabindex="0"
+              @keydown.enter="elegirRol(opcion)"
+              @keydown.space.prevent="elegirRol(opcion)"
+              @click="elegirRol(opcion)"
+            >
+              {{ opcion }}
+            </li>
+          </ul>
+        </div>
         <p v-if="errorRol" class="error-campo">{{ errorRol }}</p>
       </div>
 
@@ -36,15 +67,24 @@
         <label for="registro-clave">Contraseña</label>
         <div class="campo-contrasena">
           <input
-            id="registro-clave" v-model="contrasena"
+            id="registro-clave"
+            v-model="contrasena"
             :type="mostrarContrasena ? 'text' : 'password'"
             placeholder="Mínimo 8 caracteres"
           />
-          <button type="button" class="alternar-clave"
-            :aria-label="mostrarContrasena ? 'Ocultar contraseña' : 'Mostrar contraseña'"
-                                    @click="mostrarContrasena = !mostrarContrasena">
-            <img :src="mostrarContrasena ? esconderIcono : verIcono" alt="" />
-          </button>
+          <img
+            :src="mostrarContrasena ? esconderIcono : verIcono"
+            class="icono-ojo"
+            role="button"
+            tabindex="0"
+            alt="Mostrar u ocultar contraseña"
+            :aria-label="
+              mostrarContrasena ? 'Ocultar contraseña' : 'Mostrar contraseña'
+            "
+            @keydown.enter="mostrarContrasena = !mostrarContrasena"
+            @keydown.space.prevent="mostrarContrasena = !mostrarContrasena"
+            @click="mostrarContrasena = !mostrarContrasena"
+          />
         </div>
         <p v-if="errorContrasena" class="error-campo">{{ errorContrasena }}</p>
       </div>
@@ -54,22 +94,41 @@
         <div
           class="campo-contrasena"
           :class="{
-            coincide: confirmarContrasena !== '' && contrasena === confirmarContrasena,
-            'no-coincide': confirmarContrasena !== '' && contrasena !== confirmarContrasena
+            coincide:
+              confirmarContrasena !== '' && contrasena === confirmarContrasena,
+            'no-coincide':
+              confirmarContrasena !== '' && contrasena !== confirmarContrasena,
           }"
         >
           <input
-            id="registro-confirmar" v-model="confirmarContrasena"
+            id="registro-confirmar"
+            v-model="confirmarContrasena"
             :type="mostrarConfirmarContrasena ? 'text' : 'password'"
             placeholder="Verificar la contraseña"
           />
-          <button type="button" class="alternar-clave"
-            :aria-label="mostrarConfirmarContrasena ? 'Ocultar confirmación' : 'Mostrar confirmación'"
-                                    @click="mostrarConfirmarContrasena = !mostrarConfirmarContrasena">
-            <img :src="mostrarConfirmarContrasena ? esconderIcono : verIcono" alt="" />
-          </button>
+          <img
+            :src="mostrarConfirmarContrasena ? esconderIcono : verIcono"
+            class="icono-ojo"
+            role="button"
+            tabindex="0"
+            alt="Mostrar u ocultar contraseña"
+            :aria-label="
+              mostrarConfirmarContrasena
+                ? 'Ocultar confirmación'
+                : 'Mostrar confirmación'
+            "
+            @keydown.enter="
+              mostrarConfirmarContrasena = !mostrarConfirmarContrasena
+            "
+            @keydown.space.prevent="
+              mostrarConfirmarContrasena = !mostrarConfirmarContrasena
+            "
+            @click="mostrarConfirmarContrasena = !mostrarConfirmarContrasena"
+          />
         </div>
-        <p v-if="errorConfirmarContrasena" class="error-campo">{{ errorConfirmarContrasena }}</p>
+        <p v-if="errorConfirmarContrasena" class="error-campo">
+          {{ errorConfirmarContrasena }}
+        </p>
       </div>
 
       <button type="submit">Registrarme</button>
@@ -97,7 +156,7 @@ export default {
       confirmarContrasena: '',
       mostrarContrasena: false,
       mostrarConfirmarContrasena: false,
-      intentoEnvio: false
+      intentoEnvio: false,
     }
   },
 
@@ -161,7 +220,8 @@ export default {
     errorConfirmarContrasena() {
       if (!this.intentoEnvio) return ''
       if (this.confirmarContrasena === '') return 'Completá este campo.'
-      if (this.contrasena !== this.confirmarContrasena) return 'Las contraseñas no coinciden.'
+      if (this.contrasena !== this.confirmarContrasena)
+        return 'Las contraseñas no coinciden.'
       return ''
     },
 
@@ -175,7 +235,7 @@ export default {
         this.confirmarContrasena !== '' &&
         this.contrasena === this.confirmarContrasena
       )
-    }
+    },
   },
 
   methods: {
@@ -193,7 +253,7 @@ export default {
         nombre: this.nombre.trim(),
         email: this.email.trim(),
         rol: this.rol,
-        contrasena: this.contrasena
+        contrasena: this.contrasena,
       })
 
       this.nombre = ''
@@ -202,8 +262,8 @@ export default {
       this.contrasena = ''
       this.confirmarContrasena = ''
       this.intentoEnvio = false
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -213,7 +273,7 @@ export default {
   text-align: center;
   width: 100%;
   box-sizing: border-box;
-  background:  #e6f1dc;
+  background: #e6f1dc;
   padding: 50px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -245,7 +305,7 @@ select {
   font-size: 16px;
   background: #e6f1dc;
   color: #141d19;
-  border: 2px solid  #58866a;
+  border: 2px solid #58866a;
   border-radius: 8px;
   font-family: Arial, sans-serif;
 }
@@ -272,7 +332,7 @@ select:focus {
   padding: 12px;
   font-size: 16px;
   color: #141d19;
-  border: 2px solid  #58866a;
+  border: 2px solid #58866a;
   border-radius: 8px;
   cursor: pointer;
 }
@@ -297,7 +357,7 @@ select:focus {
   right: 0;
   color: #051109;
   background-color: #e6f1dc;
-  border: 2px solid  #58866a;
+  border: 2px solid #58866a;
   border-radius: 8px;
   list-style: none;
   margin: 0;
@@ -321,7 +381,9 @@ select:focus {
   display: flex;
   width: 80%;
   border-radius: 8px;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
 }
 
 .campo-contrasena input {
@@ -376,9 +438,23 @@ button {
   width: 80%;
 }
 
-.formulario { max-width: 620px; margin: auto; padding: 28px; }
-.campo { width: 100%; }
-.alternar-clave { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 32px; margin: 0; padding: 4px; background: transparent; }
-.alternar-clave img { display: block; width: 24px; height: 24px; }
-@media(max-width: 600px) { .formulario { padding: 20px 8px; } input, select, .campo-contrasena, .error-campo, button { width: 100%; } .alternar-clave { width: 32px; } }
+.formulario {
+  max-width: 620px;
+  margin: 32px auto;
+}
+.campo {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .formulario {
+    padding: 24px 12px;
+  }
+  input,
+  .selector,
+  .campo-contrasena,
+  .error-campo,
+  button {
+    width: 100%;
+  }
+}
 </style>
