@@ -4,9 +4,9 @@
 
     <form @submit.prevent="enviarFormulario" novalidate>
       <div class="campo">
-        <label>Nombre y apellido</label>
+        <label for="registro-nombre">Nombre y apellido</label>
         <input
-          v-model="nombre"
+          id="registro-nombre" v-model="nombre"
           type="text"
           placeholder="Nombre"
         />
@@ -14,9 +14,9 @@
       </div>
 
       <div class="campo">
-        <label>Correo electrónico</label>
+        <label for="registro-email">Correo electrónico</label>
         <input
-          v-model="email"
+          id="registro-email" v-model="email"
           type="email"
           placeholder="ejemplo@correo.com"
         />
@@ -24,49 +24,33 @@
       </div>
 
       <div class="campo">
-        <label>¿Qué tipo de usuario eres?</label>
-        <div class="selector">
-          <div class="selector-valor" @click="mostrarOpcionesRol = !mostrarOpcionesRol">
-            <span :class="{ placeholder: rol === '' }">
-              {{ rol === '' ? 'Seleccionar rol' : rol }}
-            </span>
-            <span class="flecha" :class="{ arriba: mostrarOpcionesRol }">▾</span>
-          </div>
-
-          <ul v-if="mostrarOpcionesRol" class="selector-lista">
-            <li
-              v-for="opcion in opcionesRol"
-              :key="opcion"
-              class="selector-opcion"
-              @click="elegirRol(opcion)"
-            >
-              {{ opcion }}
-            </li>
-          </ul>
-        </div>
+        <label for="registro-rol">¿Qué tipo de usuario eres?</label>
+        <select id="registro-rol" v-model="rol" aria-label="Tipo de usuario">
+          <option disabled value="">Seleccionar rol</option>
+          <option v-for="opcion in opcionesRol" :key="opcion">{{ opcion }}</option>
+        </select>
         <p v-if="errorRol" class="error-campo">{{ errorRol }}</p>
       </div>
 
       <div class="campo">
-        <label>Contraseña</label>
+        <label for="registro-clave">Contraseña</label>
         <div class="campo-contrasena">
           <input
-            v-model="contrasena"
+            id="registro-clave" v-model="contrasena"
             :type="mostrarContrasena ? 'text' : 'password'"
             placeholder="Mínimo 8 caracteres"
           />
-          <img
-            :src="mostrarContrasena ? '/icons/esconder.svg' : '/icons/ver.svg'"
-            class="icono-ojo"
-            alt="Mostrar u ocultar contraseña"
-            @click="mostrarContrasena = !mostrarContrasena"
-          />
+          <button type="button" class="alternar-clave"
+            :aria-label="mostrarContrasena ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+                                    @click="mostrarContrasena = !mostrarContrasena">
+            <img :src="mostrarContrasena ? esconderIcono : verIcono" alt="" />
+          </button>
         </div>
         <p v-if="errorContrasena" class="error-campo">{{ errorContrasena }}</p>
       </div>
 
       <div class="campo">
-        <label>Confirmar contraseña</label>
+        <label for="registro-confirmar">Confirmar contraseña</label>
         <div
           class="campo-contrasena"
           :class="{
@@ -75,16 +59,15 @@
           }"
         >
           <input
-            v-model="confirmarContrasena"
+            id="registro-confirmar" v-model="confirmarContrasena"
             :type="mostrarConfirmarContrasena ? 'text' : 'password'"
             placeholder="Verificar la contraseña"
           />
-          <img
-            :src="mostrarConfirmarContrasena ? '/icons/ver.svg' : '/icons/esconder.svg'"
-            class="icono-ojo"
-            alt="Mostrar u ocultar contraseña"
-            @click="mostrarConfirmarContrasena = !mostrarConfirmarContrasena"
-          />
+          <button type="button" class="alternar-clave"
+            :aria-label="mostrarConfirmarContrasena ? 'Ocultar confirmación' : 'Mostrar confirmación'"
+                                    @click="mostrarConfirmarContrasena = !mostrarConfirmarContrasena">
+            <img :src="mostrarConfirmarContrasena ? esconderIcono : verIcono" alt="" />
+          </button>
         </div>
         <p v-if="errorConfirmarContrasena" class="error-campo">{{ errorConfirmarContrasena }}</p>
       </div>
@@ -95,12 +78,16 @@
 </template>
 
 <script>
+import verIcono from '../assets/icons/ver.svg'
+import esconderIcono from '../assets/icons/esconder.svg'
 export default {
   name: 'formularioRegistro',
   emits: ['registrar-cuenta'],
 
   data() {
     return {
+      verIcono,
+      esconderIcono,
       nombre: '',
       email: '',
       rol: '',
@@ -257,7 +244,7 @@ select {
   padding: 12px;
   font-size: 16px;
   background: #e6f1dc;
-  color: #f4fced;
+  color: #141d19;
   border: 2px solid  #58866a;
   border-radius: 8px;
   font-family: Arial, sans-serif;
@@ -388,4 +375,10 @@ button {
   align-self: center;
   width: 80%;
 }
+
+.formulario { max-width: 620px; margin: auto; padding: 28px; }
+.campo { width: 100%; }
+.alternar-clave { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 32px; margin: 0; padding: 4px; background: transparent; }
+.alternar-clave img { display: block; width: 24px; height: 24px; }
+@media(max-width: 600px) { .formulario { padding: 20px 8px; } input, select, .campo-contrasena, .error-campo, button { width: 100%; } .alternar-clave { width: 32px; } }
 </style>

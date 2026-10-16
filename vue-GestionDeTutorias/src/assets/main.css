@@ -1,35 +1,27 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-}
+:root { font-family: Arial, Helvetica, sans-serif; color: #26332d; background: #c7e4c3; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; border: 0; border-radius: 8px; padding: 11px 16px; background: #347c59; color: white; }
+button:hover { filter: brightness(.93); }
+button:focus-visible, a:focus-visible { outline: 3px solid #174c33; outline-offset: 3px; }
+input, select, textarea { padding: 12px; color: #26332d; background: #f8fcf9; border: 1px solid #58866a; border-radius: 8px; min-width: 0; }
+h1 { font-size: clamp(26px, 4vw, 38px); color: #285f42; }
+h2 { font-size: 22px; }
+a { color: #174c33; }
+.cabecera { padding: 20px 28px; background: #e6f1dc; display: flex; justify-content: space-between; gap: 20px; align-items: center; flex-wrap: wrap; }
+.cabecera > a { font-size: 22px; font-weight: bold; text-decoration: none; }
+nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+nav button { background: #d0e5ce; color: #174c33; }
+nav button[aria-current] { background: #347c59; color: white; }
+.nota-demo { text-align: center; font-size: 14px; padding: 0 20px; }
+.pagina { max-width: 1200px; margin: auto; padding: 24px; min-height: 70vh; }
+.tarjeta { background: #e6f1dc; padding: 32px; border-radius: 20px; box-shadow: 0 4px 12px #26332d12; }
+.acceso { max-width: 480px; margin: 0 auto; }
+.acceso form { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+.enlace { padding: 4px; color: #174c33; background: transparent; text-decoration: underline; }
+.secundario { background: #e6f1dc; color: #174c33; border: 1px solid #58866a; }
+.mensaje { max-width: 720px; margin: 0 auto 20px; background: white; padding: 16px; border-radius: 8px; }
+footer { padding: 24px; text-align: center; color: #285f42; }
+@media(max-width: 600px) { .pagina { padding: 14px; } .cabecera { padding: 16px; } .tarjeta { padding: 24px; } }
+@media print { .cabecera, .nota-demo, footer { display: none; } body { background: white; } }
