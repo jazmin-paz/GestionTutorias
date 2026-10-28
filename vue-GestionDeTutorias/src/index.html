@@ -1,376 +1,200 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-
-    <title>Mis Tutorías</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Tutorías | Plataforma Escolar</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
-
-
 <body>
 
+    <!-- BARRA LATERAL -->
+    <aside class="barra">
+        <div class="logo" title="Plataforma de tutorías">✦</div>
 
-    <!-- =========================
-         BARRA LATERAL
-    ========================== -->
-
-    <div class="barra">
-
-        <div class="logo">
-            🌿
-        </div>
-
-
-        <button class="icono">
-            🏠
-        </button>
-
-
-        <button class="icono">
-            📚
-        </button>
-
-
-        <button class="botonMas">
-            +
-        </button>
-
+        <nav class="menu">
+            <button class="icono activo" title="Inicio" id="btnInicio">⌂</button>
+            <button class="icono" title="Mis tutorías" id="btnTutorias">▤</button>
+            <button class="icono" title="Agregar tutoría" id="btnNuevaTutoria">＋</button>
+        </nav>
 
         <div class="perfil">
-
-            <button class="icono">
-                👤
-            </button>
-
+            <button class="icono" title="Mi perfil" id="btnPerfil">♙</button>
         </div>
+    </aside>
 
-    </div>
-
-
-
-    <!-- =========================
-         NOTIFICACIONES
-    ========================== -->
-
-    <div class="lateral">
-
+    <!-- PANEL DE NOTIFICACIONES -->
+    <aside class="lateral">
+        <div class="marca">
+            <span class="marcaIcono">✦</span>
+            <div>
+                <strong>EduConnect</strong>
+                <small>Gestión de tutorías</small>
+            </div>
+        </div>
 
         <div class="contador">
-
+            <div class="contadorIcono">▤</div>
             <span id="numeroTutorias">0</span>
-
-            <p>TUTORÍAS</p>
-
+            <p>Tutorías programadas</p>
         </div>
-
 
         <div class="notificaciones">
-
-            <h3>NOTIFICACIONES</h3>
-
-
-            <div class="mensaje">
-
-                <span class="punto"></span>
-
-                <p>
-                    No hay tutorías pendientes
-                </p>
-
+            <div class="tituloNotificaciones">
+                <h3>Notificaciones</h3>
+                <span class="indicador"></span>
             </div>
-
+            <div id="listaNotificaciones">
+                <div class="mensaje">
+                    <span class="punto"></span>
+                    <p>No hay tutorías pendientes.</p>
+                </div>
+            </div>
         </div>
 
-    </div>
+        <div class="ayuda">
+            <div class="ayudaIcono">✧</div>
+            <strong>Organizá tus clases</strong>
+            <p>Gestioná tus materias y tutorías desde un solo lugar.</p>
+        </div>
+    </aside>
 
-
-
-    <!-- =========================
-         CONTENIDO
-    ========================== -->
-
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="contenido">
 
+        <header class="cabecera">
+            <div>
+                <span class="etiqueta">PANEL DE ORGANIZACIÓN</span>
+                <h1>Mis Tutorías <span class="decoracion">✳</span></h1>
+                <p class="subtitulo">
+                    Organizá tus cursos, materias y encuentros de forma sencilla.
+                </p>
+            </div>
+            <button class="botonPrincipal" id="btnCrearTutoria">
+                <span>＋</span> Nueva tutoría
+            </button>
+        </header>
 
-        <h1>Mis Tutorías</h1>
+        <!-- CURSOS -->
+        <section class="seccionCursos">
+            <div class="encabezadoSeccion">
+                <div>
+                    <h2>Mis cursos</h2>
+                    <p>Seleccioná el curso que querés administrar.</p>
+                </div>
+            </div>
 
-
-
-        <!-- =========================
-             CURSOS
-        ========================== -->
-
-        <div class="encabezadoCursos">
-
-
-            <div class="listaCursos" id="listaCursos">
-
-
-                <button
-                    class="curso activo"
-                    onclick="mostrarCurso(1)">
-
-                    Curso 1
-
+            <div class="encabezadoCursos">
+                <div class="listaCursos" id="listaCursos"></div>
+                <button class="agregarCurso" id="btnAgregarCurso">
+                    ＋ Agregar curso
                 </button>
+            </div>
+        </section>
 
+        <!-- CALENDARIO -->
+        <section class="tarjeta calendarioSeccion">
+            <div class="encabezadoCalendario">
+                <div>
+                    <span class="etiqueta">PLANIFICACIÓN</span>
+                    <h2 id="cursoActual">Curso 1</h2>
+                    <p>Seleccioná un día para programar una tutoría.</p>
+                </div>
 
-                <button
-                    class="curso"
-                    onclick="mostrarCurso(2)">
-
-                    Curso 2
-
-                </button>
-
-
-                <button
-                    class="curso"
-                    onclick="mostrarCurso(3)">
-
-                    Curso 3
-
-                </button>
-
-
+                <div class="navegacionCalendario">
+                    <button class="botonFlecha" id="mesAnterior" aria-label="Mes anterior">‹</button>
+                    <strong id="mesActual"></strong>
+                    <button class="botonFlecha" id="mesSiguiente" aria-label="Mes siguiente">›</button>
+                    <button class="botonHoy" id="btnHoy">Hoy</button>
+                </div>
             </div>
 
+            <div class="calendario" id="calendario"></div>
 
-
-            <div class="acciones">
-
-
-                <button
-                    class="agregarCurso"
-                    onclick="agregarCurso()">
-
-                    + Agregar curso
-
-                </button>
-
-
-                <button class="overview">
-
-                    Overview
-
-                </button>
-
-
+            <div class="leyenda">
+                <span><i class="leyendaPunto"></i> Día con tutoría</span>
+                <span><i class="leyendaHoy"></i> Día actual</span>
             </div>
+        </section>
 
-
-        </div>
-
-
-
-        <!-- =========================
-             CURSO ACTUAL
-        ========================== -->
-
-        <h2 id="cursoActual">
-            Curso 1
-        </h2>
-
-
-
-        <!-- =========================
-             CALENDARIO
-        ========================== -->
-
-        <div class="calendario">
-
-
-            <!-- DÍAS DE LA SEMANA -->
-
-            <div class="nombreDia">Lunes</div>
-            <div class="nombreDia">Martes</div>
-            <div class="nombreDia">Miércoles</div>
-            <div class="nombreDia">Jueves</div>
-            <div class="nombreDia">Viernes</div>
-
-
-
-            <!-- SEMANA 1 -->
-
-            <div class="dia">
-                <span>3</span>
-            </div>
-
-            <div class="dia">
-                <span>4</span>
-            </div>
-
-            <div class="dia">
-                <span>5</span>
-            </div>
-
-            <div class="dia">
-                <span>6</span>
-            </div>
-
-            <div class="dia">
-                <span>7</span>
-            </div>
-
-
-
-            <!-- SEMANA 2 -->
-
-            <div class="dia">
-                <span>10</span>
-            </div>
-
-            <div class="dia">
-                <span>11</span>
-            </div>
-
-            <div class="dia">
-                <span>12</span>
-            </div>
-
-            <div class="dia">
-                <span>13</span>
-            </div>
-
-            <div class="dia">
-                <span>14</span>
-            </div>
-
-
-
-            <!-- SEMANA 3 -->
-
-            <div class="dia">
-                <span>17</span>
-            </div>
-
-            <div class="dia">
-                <span>18</span>
-            </div>
-
-            <div class="dia">
-                <span>19</span>
-            </div>
-
-            <div class="dia">
-                <span>20</span>
-            </div>
-
-            <div class="dia">
-                <span>21</span>
-            </div>
-
-
-
-            <!-- SEMANA 4 -->
-
-            <div class="dia">
-                <span>24</span>
-            </div>
-
-            <div class="dia">
-                <span>25</span>
-            </div>
-
-            <div class="dia">
-                <span>26</span>
-            </div>
-
-            <div class="dia">
-                <span>27</span>
-            </div>
-
-            <div class="dia">
-                <span>28</span>
-            </div>
-
-
-
-            <!-- SEMANA 5 -->
-
-            <div class="dia">
-                <span>31</span>
-            </div>
-
-            <div class="dia vacio"></div>
-            <div class="dia vacio"></div>
-            <div class="dia vacio"></div>
-            <div class="dia vacio"></div>
-
-
-        </div>
-
-
-
-        <!-- =========================
-             MATERIAS
-        ========================== -->
-
-        <div class="materias">
-
-
+        <!-- MATERIAS -->
+        <section class="tarjeta materias">
             <div class="encabezadoMaterias">
+                <div>
+                    <span class="etiqueta">ORGANIZACIÓN</span>
+                    <h2>Materias</h2>
+                    <p>Administrá las materias de este curso.</p>
+                </div>
 
-                <h2>Materias</h2>
-
-
-                <button
-                    class="botonMateria"
-                    onclick="mostrarCajaMateria()">
-
-                    + Agregar materia
-
+                <button class="botonSecundario" id="btnAgregarMateria">
+                    ＋ Agregar materia
                 </button>
-
             </div>
 
-
-
-            <!-- CAJA PARA ESCRIBIR -->
-
-            <div
-                id="cajaMateria"
-                class="cajaMateria">
-
-
+            <form class="cajaMateria oculto" id="cajaMateria">
                 <input
                     type="text"
                     id="nombreMateria"
-                    placeholder="Nombre de la materia">
+                    placeholder="Ej: Matemática, Lengua, Historia..."
+                    maxlength="45"
+                    required
+                >
+                <button type="submit" class="botonPrincipal">Agregar</button>
+                <button type="button" class="botonCancelar" id="cancelarMateria">Cancelar</button>
+            </form>
 
+            <div class="listaMaterias" id="listaMaterias"></div>
+        </section>
 
-                <button onclick="agregarMateria()">
-
-                    Agregar
-
-                </button>
-
-
+        <!-- PRÓXIMAS TUTORÍAS -->
+        <section class="tarjeta proximas">
+            <div class="encabezadoMaterias">
+                <div>
+                    <span class="etiqueta">AGENDA</span>
+                    <h2>Próximas tutorías</h2>
+                    <p>Consultá los encuentros programados.</p>
+                </div>
             </div>
+            <div id="listaTutorias"></div>
+        </section>
 
-
-
-            <!-- MATERIAS -->
-
-            <div
-                id="listaMaterias"
-                class="listaMaterias">
-
-            </div>
-
-
-        </div>
-
-
+        <footer>EduConnect · Plataforma de gestión de tutorías</footer>
     </main>
 
+    <!-- VENTANA PARA CREAR TUTORÍAS -->
+    <div class="modalFondo oculto" id="modalTutoria">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloModal">
+            <div class="modalEncabezado">
+                <div>
+                    <span class="etiqueta">NUEVO ENCUENTRO</span>
+                    <h2 id="tituloModal">Programar tutoría</h2>
+                </div>
+                <button class="cerrarModal" id="cerrarModal" aria-label="Cerrar">×</button>
+            </div>
 
+            <form id="formTutoria">
+                <label for="materiaTutoria">Materia</label>
+                <select id="materiaTutoria" required></select>
+
+                <label for="fechaTutoria">Fecha</label>
+                <input type="date" id="fechaTutoria" required>
+
+                <label for="horaTutoria">Horario</label>
+                <input type="time" id="horaTutoria" required>
+
+                <label for="descripcionTutoria">Descripción (opcional)</label>
+                <textarea id="descripcionTutoria" rows="3"
+                    placeholder="Ej: Repaso para la evaluación..."></textarea>
+
+                <div class="accionesModal">
+                    <button type="button" class="botonCancelar" id="cancelarTutoria">Cancelar</button>
+                    <button type="submit" class="botonPrincipal">Guardar tutoría</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
