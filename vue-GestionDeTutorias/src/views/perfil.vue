@@ -310,8 +310,7 @@
 </template>
 
 <script setup>
-import "./perfil.js";
-import { usePerfil } from "./perfil.js";
+import { usePerfil } from "../perfil.js";
 
 const {
   perfil,
