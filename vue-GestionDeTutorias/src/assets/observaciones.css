@@ -1,0 +1,192 @@
+.observaciones-contenedor {
+  width: 90%;
+  max-width: 1000px;
+
+  background-color: white;
+
+  padding: 35px;
+
+  border-radius: 20px;
+
+  box-shadow: 0 5px 20px rgba(55, 120, 85, 0.12);
+}
+
+.observaciones-titulo {
+  text-align: center;
+
+  color: #347c59;
+
+  font-size: 32px;
+
+  margin-bottom: 30px;
+}
+
+.fila-datos {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+.campo-observacion {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.campo-observacion label {
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #347c59;
+}
+
+.campo-observacion input,
+.campo-observacion select,
+.campo-observacion textarea {
+  width: 100%;
+
+  padding: 13px;
+
+  border: 1px solid #b8d6c1;
+
+  border-radius: 10px;
+
+  background-color: #f8fcf9;
+
+  color: #26332d;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.25s ease;
+}
+
+.campo-observacion input:focus,
+.campo-observacion select:focus,
+.campo-observacion textarea:focus {
+  border-color: #57bb7f;
+
+  box-shadow: 0 0 0 3px rgba(87, 187, 127, 0.15);
+}
+
+.estudiante-observacion {
+  margin-bottom: 20px;
+}
+
+.fila-textareas {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+
+  margin-bottom: 30px;
+}
+
+.campo-observacion textarea {
+  min-height: 150px;
+
+  resize: vertical;
+}
+
+.botones-observacion {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+}
+
+.boton-observacion {
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.boton-observacion:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 12px rgba(55, 120, 85, 0.15);
+}
+
+.boton-editar {
+  background-color: #90caf9;
+  color: #0d47a1;
+}
+
+.boton-reprogramar {
+  background-color: #ffcc80;
+  color: #e65100;
+}
+
+.boton-cancelar {
+  background-color: #ef9a9a;
+  color: #b71c1c;
+}
+
+.boton-reenviar {
+  background-color: #b39ddb;
+  color: #4527a0;
+}
+
+.boton-imprimir {
+  background-color: #b0bec5;
+  color: #263238;
+}
+
+.boton-volver {
+  background-color: #a5d6a7;
+  color: #1b5e20;
+}
+
+@media (max-width: 900px) {
+  .observaciones-contenedor {
+    max-width: 800px;
+  }
+
+  .fila-datos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .observaciones-contenedor {
+    padding: 25px;
+  }
+
+  .observaciones-titulo {
+    font-size: 28px;
+  }
+
+  .fila-datos {
+    grid-template-columns: 1fr;
+  }
+
+  .fila-textareas {
+    grid-template-columns: 1fr;
+  }
+
+  .botones-observacion {
+    grid-template-columns: 1fr;
+  }
+}

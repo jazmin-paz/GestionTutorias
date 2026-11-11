@@ -1,5 +1,15 @@
 # GestionTutorias
 
+La aplicación integrada está en `vue-GestionDeTutorias`. Para ejecutarla:
+
+```sh
+cd vue-GestionDeTutorias
+npm install
+npm run dev
+```
+
+Consultá [la guía de ejecución, pruebas e integración](vue-GestionDeTutorias/README.md). El prototipo funciona sin servidor y conserva datos solo durante la sesión; el envío de correos y el almacenamiento permanente siguen pendientes.
+
 ## Descripción del proyecto
 
 **Gestión Tutorías** es una aplicación web diseñada para facilitar la organización, el seguimiento y el registro de las tutorías realizadas.

@@ -1,35 +1,37 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+* {
+  box-sizing: border-box;
 }
-
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #c7e4c3;
+  color: #26332d;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
 a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+[role='button'] {
+  cursor: pointer;
 }
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+button:focus-visible,
+a:focus-visible,
+[role='button']:focus-visible {
+  outline: 2px solid #347c59;
+  outline-offset: 3px;
+}
+@media print {
+  .sidebar,
+  .footer,
+  .botones-observacion {
+    display: none !important;
   }
-}
-
-@media (min-width: 1024px) {
   body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    background: white;
   }
 }
