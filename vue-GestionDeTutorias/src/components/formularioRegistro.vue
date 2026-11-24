@@ -1,6 +1,28 @@
 <template>
   <section class="formulario">
+    <div class="marca-registro" aria-label="ProA La Falda">
+      <span class="marca-simbolo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <path
+            d="M7 23.5V8.5h8.2a5.2 5.2 0 1 1 0 10.4H11"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M18 18.5h6.5M21.25 15.25v6.5M11 23.5v-6"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+          />
+        </svg>
+      </span>
+      <span>ProA · La Falda</span>
+    </div>
     <h2>Crea tu cuenta</h2>
+    <p class="formulario-intro">Sumate a la comunidad de gestión de tutorías.</p>
+    <p v-if="mensaje" class="mensaje-registro" role="status">{{ mensaje }}</p>
 
     <form @submit.prevent="enviarFormulario" novalidate>
       <div class="campo">
@@ -139,9 +161,13 @@
 <script>
 import verIcono from '../assets/icons/ver.svg'
 import esconderIcono from '../assets/icons/esconder.svg'
+
 export default {
   name: 'formularioRegistro',
   emits: ['registrar-cuenta'],
+  props: {
+    mensaje: { type: String, default: '' },
+  },
 
   data() {
     return {
@@ -249,19 +275,24 @@ export default {
 
       if (!this.formularioValido) return
 
-      this.$emit('registrar-cuenta', {
-        nombre: this.nombre.trim(),
-        email: this.email.trim(),
-        rol: this.rol,
-        contrasena: this.contrasena,
-      })
-
-      this.nombre = ''
-      this.email = ''
-      this.rol = ''
-      this.contrasena = ''
-      this.confirmarContrasena = ''
-      this.intentoEnvio = false
+      this.$emit(
+        'registrar-cuenta',
+        {
+          nombre: this.nombre.trim(),
+          email: this.email.trim(),
+          rol: this.rol,
+          contrasena: this.contrasena,
+        },
+        (registrado) => {
+          if (!registrado) return
+          this.nombre = ''
+          this.email = ''
+          this.rol = ''
+          this.contrasena = ''
+          this.confirmarContrasena = ''
+          this.intentoEnvio = false
+        },
+      )
     },
   },
 }
@@ -447,13 +478,188 @@ button {
 }
 @media (max-width: 600px) {
   .formulario {
-    padding: 24px 12px;
+    padding: 34px 18px;
   }
-  input,
-  .selector,
-  .campo-contrasena,
-  .error-campo,
-  button {
+}
+
+.formulario {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  max-width: none;
+  margin: 0;
+  padding: 46px 18px;
+  border: 0;
+  border-radius: 0;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(201, 228, 209, 0.38), transparent 34rem),
+    #f5f8f5;
+  box-shadow: none;
+}
+
+.marca-registro {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  color: #85948b;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.marca-simbolo {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: 17px;
+  background: #e8f2eb;
+  color: #34795a;
+}
+
+.formulario h2 {
+  margin: 0;
+  color: #203d2f;
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -0.05em;
+}
+
+.formulario-intro {
+  margin: 8px 0 24px;
+  color: #728078;
+  font-size: 14px;
+}
+
+.mensaje-registro,
+.mensaje-configuracion {
+  width: min(100%, 520px);
+  margin: 0 0 17px;
+  padding: 11px 13px;
+  border: 1px solid #d2e6d7;
+  border-radius: 10px;
+  background: #f1f8f2;
+  color: #2f704b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.formulario form {
+  width: min(100%, 520px);
+  gap: 16px;
+  align-items: stretch;
+}
+
+.campo {
+  align-items: stretch;
+  text-align: left;
+}
+
+.campo label {
+  align-self: auto;
+  margin-bottom: 7px;
+  color: #46564d;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.formulario input,
+.formulario select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dce6df;
+  border-radius: 11px;
+  background: #fbfdfb;
+  color: #23352d;
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formulario input:focus,
+.formulario select:focus {
+  border-color: #69a985;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(74, 154, 112, 0.12);
+}
+
+.selector {
+  width: 100%;
+  font-family: inherit;
+}
+
+.selector-valor {
+  padding: 12px 14px;
+  border: 1px solid #dce6df;
+  border-radius: 11px;
+  background: #fbfdfb;
+  color: #23352d;
+  font-size: 14px;
+}
+
+.selector-valor .placeholder {
+  color: #929e96;
+}
+
+.flecha {
+  color: #34795a;
+}
+
+.selector-lista {
+  border: 1px solid #dce6df;
+  border-radius: 11px;
+  background: #fff;
+  color: #23352d;
+  box-shadow: 0 12px 28px rgba(27, 62, 43, 0.12);
+}
+
+.selector-opcion:hover {
+  background: #e8f2eb;
+  color: #285d40;
+}
+
+.campo-contrasena {
+  width: 100%;
+  border-radius: 11px;
+}
+
+.campo-contrasena.no-coincide {
+  background: rgba(185, 28, 28, 0.04);
+}
+
+.campo-contrasena.coincide {
+  background: rgba(22, 101, 52, 0.04);
+}
+
+.error-campo {
+  width: 100%;
+  font-weight: 600;
+}
+
+.formulario button {
+  width: 100%;
+  min-height: 46px;
+  margin-top: 8px;
+  padding: 12px 18px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #34795a, #438c65);
+  color: white;
+  font-size: 14px;
+  font-weight: 750;
+  box-shadow: 0 9px 18px rgba(52, 121, 90, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formulario button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(52, 121, 90, 0.24);
+}
+
+@media (max-width: 600px) {
+  .formulario form {
     width: 100%;
   }
 }
